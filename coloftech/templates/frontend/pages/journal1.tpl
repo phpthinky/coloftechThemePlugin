@@ -36,7 +36,7 @@
                                     <div class="separator clear-left">
                                         
                                         <p class="btn-add">
-                                            <i class="fa fa-list"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">Details</a></p>
+                                            <i class="fa fa-list"></i><a href="https://github.com/coloftech/coloftechThemePlugin" class="hidden-sm">Details</a></p>
                                     </div>
                                     <div class="clearfix">
                                     </div>
@@ -60,7 +60,7 @@
                                     <div class="separator clear-left">
                                         
                                         <p class="btn-add">
-                                            <i class="fa fa-list"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">Details</a></p>
+                                            <i class="fa fa-list"></i><a href="https://github.com/coloftech/coloftechThemePlugin" class="hidden-sm">Details</a></p>
                                     </div>
                                     <div class="clearfix">
                                     </div>
@@ -84,7 +84,7 @@
                                     <div class="separator clear-left">
                                         
                                         <p class="btn-add">
-                                            <i class="fa fa-list"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">Details</a></p>
+                                            <i class="fa fa-list"></i><a href="https://github.com/coloftech/coloftechThemePlugin" class="hidden-sm">Details</a></p>
                                     </div>
                                     <div class="clearfix">
                                     </div>
@@ -112,7 +112,7 @@
                                     <div class="separator clear-left">
                                         
                                         <p class="btn-add">
-                                            <i class="fa fa-list"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">Details</a></p>
+                                            <i class="fa fa-list"></i><a href="https://github.com/coloftech/coloftechThemePlugin" class="hidden-sm">Details</a></p>
                                     </div>
                                     <div class="clearfix">
                                     </div>
@@ -136,7 +136,7 @@
                                     <div class="separator clear-left">
                                         
                                         <p class="btn-add">
-                                            <i class="fa fa-list"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">Details</a></p>
+                                            <i class="fa fa-list"></i><a href="https://github.com/coloftech/coloftechThemePlugin" class="hidden-sm">Details</a></p>
                                     </div>
                                     <div class="clearfix">
                                     </div>
@@ -161,7 +161,7 @@
                                     <div class="separator clear-left">
                                        
                                         <p class="btn-add">
-                                            <i class="fa fa-list"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">Details</a></p>
+                                            <i class="fa fa-list"></i><a href="https://github.com/coloftech/coloftechThemePlugin" class="hidden-sm">Details</a></p>
                                     </div>
                                     <div class="clearfix">
                                     </div>
@@ -212,7 +212,7 @@
                                     <div class="separator clear-left">
                                         
                                         <p class="btn-add">
-                                            <i class="fa fa-list"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">Details</a></p>
+                                            <i class="fa fa-list"></i><a href="https://github.com/coloftech/coloftechThemePlugin" class="hidden-sm">Details</a></p>
                                     </div>
                                     <div class="clearfix">
                                     </div>
@@ -237,7 +237,7 @@
                                     <div class="separator clear-left">
                                        
                                         <p class="btn-add">
-                                            <i class="fa fa-list"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">Details</a></p>
+                                            <i class="fa fa-list"></i><a href="https://github.com/coloftech/coloftechThemePlugin" class="hidden-sm">Details</a></p>
                                     </div>
                                     <div class="clearfix">
                                     </div>
@@ -262,7 +262,7 @@
                                     <div class="separator clear-left">
                                         
                                         <p class="btn-add">
-                                            <i class="fa fa-list"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">Details</a></p>
+                                            <i class="fa fa-list"></i><a href="https://github.com/coloftech/coloftechThemePlugin" class="hidden-sm">Details</a></p>
                                     </div>
                                     <div class="clearfix">
                                     </div>
@@ -287,7 +287,7 @@
                                     <div class="separator clear-left">
                                        
                                         <p class="btn-add">
-                                            <i class="fa fa-list"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">Details</a></p>
+                                            <i class="fa fa-list"></i><a href="https://github.com/coloftech/coloftechThemePlugin" class="hidden-sm">Details</a></p>
                                     </div>
                                     <div class="clearfix">
                                     </div>
@@ -316,7 +316,7 @@
                                     <div class="separator clear-left">
                                         
                                         <p class="btn-add">
-                                            <i class="fa fa-list"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">Details</a></p>
+                                            <i class="fa fa-list"></i><a href="https://github.com/coloftech/coloftechThemePlugin" class="hidden-sm">Details</a></p>
                                     </div>
                                     <div class="clearfix">
                                     </div>
@@ -341,7 +341,7 @@
                                     <div class="separator clear-left">
                                         
                                         <p class="btn-add">
-                                            <i class="fa fa-list"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">Details</a></p>
+                                            <i class="fa fa-list"></i><a href="https://github.com/coloftech/coloftechThemePlugin" class="hidden-sm">Details</a></p>
                                     </div>
                                     <div class="clearfix">
                                     </div>
@@ -366,7 +366,7 @@
                                     <div class="separator clear-left">
                                         
                                         <p class="btn-add">
-                                            <i class="fa fa-list"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">Details</a></p>
+                                            <i class="fa fa-list"></i><a href="https://github.com/coloftech/coloftechThemePlugin" class="hidden-sm">Details</a></p>
                                     </div>
                                     <div class="clearfix">
                                     </div>
@@ -391,7 +391,7 @@
                                     <div class="separator clear-left">
                                        
                                         <p class="btn-add">
-                                            <i class="fa fa-list"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">Details</a></p>
+                                            <i class="fa fa-list"></i><a href="https://github.com/coloftech/coloftechThemePlugin" class="hidden-sm">Details</a></p>
                                     </div>
                                     <div class="clearfix">
                                     </div>
