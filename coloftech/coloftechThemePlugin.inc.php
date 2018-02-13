@@ -120,5 +120,9 @@ class coloftechThemePlugin extends ThemePlugin {
 
 		$this->assign('journalId',$journalId);
 	}
+	function getActiveJournalUsers($journalId=0)
+	{
+		$sql = sprintf("SELECT us.user_id,us.username,uug.user_group_id,ugg.context_id FROM users AS us LEFT JOIN user_user_groups AS uug ON uug.user_id = us.user_id LEFT JOIN user_groups AS ugg ON ugg.user_group_id = uug.user_group_id GROUP BY us.user_id WHERE uug.context_id = %d");
+	}
 }
 ?>
