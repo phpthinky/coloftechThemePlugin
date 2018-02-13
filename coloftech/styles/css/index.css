@@ -1,9 +1,21 @@
 
-
+.pkp_structure_page{
+	padding: 0;
+	margin:0;
+	max-width: 100%;
+	width: 100% !important;
+}
 .pkp_structure_head {
 	background-color: #0ab4f3;
-}
+	width: 100% !important;
 
+}
+.pkp_head_wrapper .pkp_navigation_primary_row{
+    background-color: #046dc9;
+    height: 55px !important;
+    padding:0;
+
+}
 .pkp_navigation_user_wrapper ul#navigationUser {
 	right: 0;
 	text-decoration: none;
