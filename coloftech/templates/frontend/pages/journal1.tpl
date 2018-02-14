@@ -1,7 +1,11 @@
 <div class="slider">
+
+
+         {if $editorialteam}
     <div class="row">
         <div class="row">
             <div class="col-md-9">
+                
                 <h3>
                    Journal Editors</h3>
             </div>
@@ -17,162 +21,19 @@
         <div id="editorial" class="carousel slide hidden-xs" data-ride="carousel">
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
-                <div class="item active">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="col-item">
-                                <div class="photo">
-                                    <img src="{$baseUrl}/public/images/um.png" class="img-responsive" alt="a" />
-                                </div>
-                                <div class="info">
-                                    <div class="row">
-                                        <div class="price col-md-12">
-                                            <h5>
-                                                Replace name here</h5>
-                                            <h5 class="price-text-color">
-                                                Chief Editor</h5>
-                                        </div>
-                                    </div>
-                                    <div class="separator clear-left">
-                                        
-                                        <p class="btn-add">
-                                            <i class="fa fa-list"></i><a href="https://github.com/coloftech/coloftechThemePlugin" class="hidden-sm">Details</a></p>
-                                    </div>
-                                    <div class="clearfix">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="col-item">
-                                <div class="photo">
-                                    <img src="{$baseUrl}/public/images/um.png" class="img-responsive" alt="a" />
-                                </div>
-                                <div class="info">
-                                    <div class="row">
-                                        <div class="price col-md-12">
-                                            <h5>
-                                                Replace name here</h5>
-                                            <h5 class="price-text-color">
-                                                Section Editor</h5>
-                                        </div>
-                                    </div>
-                                    <div class="separator clear-left">
-                                        
-                                        <p class="btn-add">
-                                            <i class="fa fa-list"></i><a href="https://github.com/coloftech/coloftechThemePlugin" class="hidden-sm">Details</a></p>
-                                    </div>
-                                    <div class="clearfix">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="col-item">
-                                <div class="photo">
-                                    <img src="{$baseUrl}/public/images/um.png" class="img-responsive" alt="a" />
-                                </div>
-                                <div class="info">
-                                    <div class="row">
-                                        <div class="price col-md-12">
-                                            <h5>
-                                               Replace name here</h5>
-                                            <h5 class="price-text-color">
-                                               Section Editor</h5>
-                                        </div>
-                                    </div>
-                                    <div class="separator clear-left">
-                                        
-                                        <p class="btn-add">
-                                            <i class="fa fa-list"></i><a href="https://github.com/coloftech/coloftechThemePlugin" class="hidden-sm">Details</a></p>
-                                    </div>
-                                    <div class="clearfix">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="col-item">
-                                <div class="photo">
-                                    <img src="{$baseUrl}/public/images/um.png" class="img-responsive" alt="a" />
-                                </div>
-                                <div class="info">
-                                    <div class="row">
-                                        <div class="price col-md-12">
-                                            <h5>
-                                                Replace name here</h5>
-                                            <h5 class="price-text-color">
-                                                Section Editor</h5>
-                                        </div>
-                                    </div>
-                                    <div class="separator clear-left">
-                                        
-                                        <p class="btn-add">
-                                            <i class="fa fa-list"></i><a href="https://github.com/coloftech/coloftechThemePlugin" class="hidden-sm">Details</a></p>
-                                    </div>
-                                    <div class="clearfix">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="col-item">
-                                <div class="photo">
-                                    <img src="{$baseUrl}/public/images/um.png" class="img-responsive" alt="a" />
-                                </div>
-                                <div class="info">
-                                    <div class="row">
-                                        <div class="price col-md-12">
-                                            <h5>
-                                                Replace name here</h5>
-                                            <h5 class="price-text-color">
-                                                Section Editor</h5>
-                                        </div>
-                                    </div>
-                                    <div class="separator clear-left">
-                                        
-                                        <p class="btn-add">
-                                            <i class="fa fa-list"></i><a href="https://github.com/coloftech/coloftechThemePlugin" class="hidden-sm">Details</a></p>
-                                    </div>
-                                    <div class="clearfix">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="col-item">
-                                <div class="photo">
-                                    <img src="{$baseUrl}/public/images/um.png" class="img-responsive" alt="a" />
-                                </div>
-                                <div class="info">
-                                    <div class="row">
-                                        <div class="price col-md-12">
-                                            <h5>
-                                                Section Editor 5 </h5>
-                                            <h5 class="price-text-color">
-                                                Replace name here</h5>
-                                        </div>
-                                        
-                                    </div>
-                                    <div class="separator clear-left">
-                                       
-                                        <p class="btn-add">
-                                            <i class="fa fa-list"></i><a href="https://github.com/coloftech/coloftechThemePlugin" class="hidden-sm">Details</a></p>
-                                    </div>
-                                    <div class="clearfix">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+             {$editorialdata}
+
+
             </div>
         </div>
     </div>
+
+         {/if}
+
+
+
+
 
     <div class="row">
         <div class="row">
@@ -402,5 +263,20 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <ul>
+
+         {if $editorialteam}
+
+         {foreach from=$editorialteam item=u}
+            <li>{$u.username}</li>
+        {/foreach}
+
+         {/if}
+            
+        </ul>
     </div>
 </div>
