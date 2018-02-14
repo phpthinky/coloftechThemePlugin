@@ -3,7 +3,6 @@
 /**
  * @file plugins/themes/default/coloftechThemePlugin.inc.php
  *
- * Copyright (c) 2017- 2018 Harold Rita coloftech.com
  * Copyright (c) 2014-2017 Simon Fraser University Library
  * Copyright (c) 2003-2017 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -13,7 +12,10 @@
  *
  * @brief Default theme
  */
+import('lib.pkp.classes.plugins.GenericPlugin');
 import('lib.pkp.classes.plugins.ThemePlugin');
+import('classes.user.UserDAO');
+
 
 class coloftechThemePlugin extends ThemePlugin {
 	/**
@@ -91,6 +93,10 @@ class coloftechThemePlugin extends ThemePlugin {
 		if ($this->getOption('baseColour') && $this->getOption('accentColour')) {
 			$this->modifyStyle('stylesheet', array('addLessVariables' => join('', $additionalLessVariables)));
 		}
+
+
+
+		HookRegistry::register('TemplateManager::display', array($this, 'getActivejournal'), HOOK_SEQUENCE_NORMAL);
 	}
 
 	/**
@@ -109,21 +115,38 @@ class coloftechThemePlugin extends ThemePlugin {
 		return __('plugins.themes.coloftech.description');
 	}
 
-	function getActivejournal(){
+	function getActivejournal($hookName, $args){
 
+
+		$smarty = $args[0];
+		$template = $args[1];
 		$journalId = 0;
-		$journalDao = DAORegistry::getDAO('JournalDAO');
-
+				
 		$journalInfo =& Request::getJournal();
 		if($journalInfo != NULL){			
 		$journalId = (int)$journalInfo->getId();
 		}
 
-		$this->assign('journalId',$journalId);
+		$smarty->assign('journalId',$journalId);
+		
 	}
 	function getActiveJournalUsers($journalId=0)
 	{
-		$sql = sprintf("SELECT us.user_id,us.username,uug.user_group_id,ugg.context_id FROM users AS us LEFT JOIN user_user_groups AS uug ON uug.user_id = us.user_id LEFT JOIN user_groups AS ugg ON ugg.user_group_id = uug.user_group_id GROUP BY us.user_id WHERE uug.context_id = %d");
+		$sql = sprintf("SELECT us.user_id,us.username,us.first_name,us.last_name,uug.user_group_id,ugg.context_id,ugg.role_id,ugs.setting_value FROM users AS us LEFT JOIN user_user_groups AS uug ON uug.user_id = us.user_id LEFT JOIN user_groups AS ugg ON ugg.user_group_id = uug.user_group_id LEFT JOIN user_group_settings AS ugs ON ugs.user_group_id = ugg.user_group_id WHERE ugs.setting_name = 'name'");
+	}
+
+	function getEditors($journalId='')
+	{
+		$sql = sprintf("SELECT us.user_id,us.username,us.first_name,us.last_name,uug.user_group_id,ugg.context_id,ugg.role_id,ugs.setting_value FROM users AS us LEFT JOIN user_user_groups AS uug ON uug.user_id = us.user_id LEFT JOIN user_groups AS ugg ON ugg.user_group_id = uug.user_group_id LEFT JOIN user_group_settings AS ugs ON ugs.user_group_id = ugg.user_group_id WHERE ugg.context_id = 1 AND ugs.setting_name = 'name' AND ugg.role_id = 16 OR  ugg.context_id = 1 AND ugs.setting_name = 'name' AND ugg.role_id = 17 GROUP BY us.user_id");
+
+		$user = null;
+		
+	}
+	function getProfileImg($userId=0)
+	{
+		$sql = sprintf("SELECT us.user_id,uss.setting_value FROM users AS us LEFT JOIN user_settings AS uss ON uss.user_id = us.user_id WHERE uss.setting_name = 'profileImage'");
+
+
 	}
 }
 ?>
