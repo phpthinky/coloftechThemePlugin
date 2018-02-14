@@ -265,18 +265,3 @@
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-12">
-        <ul>
-
-         {if $editorialteam}
-
-         {foreach from=$editorialteam item=u}
-            <li>{$u.username}</li>
-        {/foreach}
-
-         {/if}
-            
-        </ul>
-    </div>
-</div>
