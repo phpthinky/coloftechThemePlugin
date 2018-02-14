@@ -14,9 +14,9 @@
  */
 import('lib.pkp.classes.plugins.GenericPlugin');
 import('lib.pkp.classes.plugins.ThemePlugin');
-//import('classes.user.UserDAO');
-import('lib.pkp.classes.user.PKPUser');
 
+import('classes.user.UserSettingsDAO');
+import('classes.file.PublicFileManager');
 
 class coloftechThemePlugin extends ThemePlugin {
 	/**
@@ -154,7 +154,7 @@ class coloftechThemePlugin extends ThemePlugin {
 		$smarty = $args[0];
 		$template = $args[1];
 
-	$sql = sprintf("SELECT us.user_id,us.username,us.first_name,us.last_name,ugs.setting_value FROM users AS us LEFT JOIN user_user_groups AS uug ON uug.user_id = us.user_id LEFT JOIN user_groups AS ugg ON ugg.user_group_id = uug.user_group_id LEFT JOIN user_group_settings AS ugs ON ugs.user_group_id = ugg.user_group_id WHERE ugg.context_id = %d AND ugs.setting_name = 'name' AND ugg.user_group_id = 3 and us.user_id <> 1 OR ugg.context_id = %d AND ugs.setting_name = 'name' AND ugg.user_group_id = 5 and us.user_id <> 1 GROUP BY us.user_id",$journalId,$journalId);
+	$sql = sprintf("SELECT us.user_id,us.username,us.first_name,us.last_name,ugs.setting_value as positionTitle FROM users AS us LEFT JOIN user_user_groups AS uug ON uug.user_id = us.user_id LEFT JOIN user_groups AS ugg ON ugg.user_group_id = uug.user_group_id LEFT JOIN user_group_settings AS ugs ON ugs.user_group_id = ugg.user_group_id WHERE ugg.context_id = %d AND ugs.setting_name = 'name' AND ugg.user_group_id = 3 and us.user_id <> 1 OR ugg.context_id = %d AND ugs.setting_name = 'name' AND ugg.user_group_id = 5 and us.user_id <> 1 GROUP BY us.user_id",$journalId,$journalId);
 		
 		/* database connection parser*/
 		$config = parse_ini_file("config.inc.php");
@@ -184,7 +184,19 @@ class coloftechThemePlugin extends ThemePlugin {
 
 
     	foreach ($editorialteam as $key) {
-    		
+
+
+
+
+		$request = DAORegistry::getDAO('UserSettingsDAO');
+    	if($request != NULL){			
+		$profile = $request->getSetting($key['user_id'],'profileImage');
+		}
+		$publicFileManager = new PublicFileManager();
+		$path = $publicFileManager->getSiteFilesPath();
+
+		$profileImage = $profile['uploadName'] ? '../../'.$path.'/'.$profile['uploadName'] : '../../plugins/themes/coloftech/images/um.png';
+		
     		if ($j == 3) {
 
     			if ($i == 0) {
@@ -200,7 +212,7 @@ class coloftechThemePlugin extends ThemePlugin {
     			<div class="col-sm-4">
                             <div class="col-item">
                                 <div class="photo">
-                                    <img src="../../plugins/themes/coloftech/images/um.png" class="img-responsive" alt="a" />
+                                    <img  src="'.$profileImage.'" class="img-responsive" alt="a" />
                                 </div>
 
                                 <div class="info">
@@ -210,7 +222,7 @@ class coloftechThemePlugin extends ThemePlugin {
                                             <h5>
                                                 '.$key['username'].'</h5>
                                             <h5 class="price-text-color">
-                                                '.$key['setting_value'].'</h5>
+                                                '.$key['positionTitle'].'</h5>
                                         </div>
                                     </div>
 
@@ -278,7 +290,7 @@ class coloftechThemePlugin extends ThemePlugin {
 		$smarty = $args[0];
 		$template = $args[1];
 
-	$sql = sprintf("SELECT us.user_id,us.username,us.first_name,us.last_name,ugs.setting_value FROM users AS us LEFT JOIN user_user_groups AS uug ON uug.user_id = us.user_id LEFT JOIN user_groups AS ugg ON ugg.user_group_id = uug.user_group_id LEFT JOIN user_group_settings AS ugs ON ugs.user_group_id = ugg.user_group_id WHERE ugg.context_id = %d AND ugs.setting_name = 'name' AND ugg.user_group_id = 7 and us.user_id <> 1 OR ugg.context_id = %d AND ugs.setting_name = 'name' AND ugg.user_group_id = 11 and us.user_id <> 1  OR ugg.context_id = %d AND ugs.setting_name = 'name' AND ugg.user_group_id = 13 and us.user_id <> 1 GROUP BY us.user_id",$journalId,$journalId,$journalId);
+	$sql = sprintf("SELECT us.user_id,us.username,us.first_name,us.last_name,ugs.setting_value as positionTitle FROM users AS us LEFT JOIN user_user_groups AS uug ON uug.user_id = us.user_id LEFT JOIN user_groups AS ugg ON ugg.user_group_id = uug.user_group_id LEFT JOIN user_group_settings AS ugs ON ugs.user_group_id = ugg.user_group_id WHERE ugg.context_id = %d AND ugs.setting_name = 'name' AND ugg.user_group_id = 7 and us.user_id <> 1 OR ugg.context_id = %d AND ugs.setting_name = 'name' AND ugg.user_group_id = 11 and us.user_id <> 1  OR ugg.context_id = %d AND ugs.setting_name = 'name' AND ugg.user_group_id = 13 and us.user_id <> 1 GROUP BY us.user_id",$journalId,$journalId,$journalId);
 		
 		/* database connection parser*/
 		$config = parse_ini_file("config.inc.php");
@@ -309,6 +321,19 @@ class coloftechThemePlugin extends ThemePlugin {
 
     	foreach ($managementteam as $key) {
     		
+
+
+		
+
+		$request = DAORegistry::getDAO('UserSettingsDAO');
+    	if($request != NULL){			
+		$profile = $request->getSetting($key['user_id'],'profileImage');
+		}
+		$publicFileManager = new PublicFileManager();
+		$path = $publicFileManager->getSiteFilesPath();
+
+		$profileImage = $profile['uploadName'] ? '../../'.$path.'/'.$profile['uploadName'] : '../../plugins/themes/coloftech/images/um.png';
+		
     		if ($j == 4) {
 
     			if ($i == 0) {
@@ -321,10 +346,10 @@ class coloftechThemePlugin extends ThemePlugin {
     		if ($j > 0 ) {
 
     			$html .= '
-    			<div class="col-sm-3">
+    			<div class="col-sm-4">
                             <div class="col-item">
                                 <div class="photo">
-                                    <img src="../../plugins/themes/coloftech/images/um.png" class="img-responsive" alt="a" />
+                                    <img  src="'.$profileImage.'" class="img-responsive" alt="a" />
                                 </div>
 
                                 <div class="info">
@@ -334,7 +359,7 @@ class coloftechThemePlugin extends ThemePlugin {
                                             <h5>
                                                 '.$key['username'].'</h5>
                                             <h5 class="price-text-color">
-                                                '.$key['setting_value'].'</h5>
+                                                '.$key['positionTitle'].'</h5>
                                         </div>
                                     </div>
 
@@ -395,5 +420,16 @@ class coloftechThemePlugin extends ThemePlugin {
 
 
 	}
+	/*
+	function initData() {
+		$user = $this->getUser();
+
+		$this->_data = array(
+			'orcid' => $user->getOrcid(),
+			'userUrl' => $user->getUrl(),
+			'biography' => $user->getBiography(null), // Localized
+		);
+	}
+	*/
 }
 ?>
