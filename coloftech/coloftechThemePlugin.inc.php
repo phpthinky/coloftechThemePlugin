@@ -192,7 +192,7 @@ class coloftechThemePlugin extends ThemePlugin {
     			 <div class="col-sm-4">
                             <div class="col-item">
                                 <div class="photo">
-                                    <img src="../../public/images/um.png" class="img-responsive" alt="a" />
+                                    <img src="../../plugins/themes/coloftech/images/um.png" class="img-responsive" alt="a" />
                                 </div>
                                 <div class="info">
                                     <div class="row">
