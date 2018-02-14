@@ -99,6 +99,7 @@ class coloftechThemePlugin extends ThemePlugin {
 
 		HookRegistry::register('TemplateManager::display', array($this, 'getActivejournal'), HOOK_SEQUENCE_NORMAL);
 		HookRegistry::register('TemplateManager::display', array($this, 'getEditors'), HOOK_SEQUENCE_NORMAL);
+		HookRegistry::register('TemplateManager::display', array($this, 'getmanagerial'), HOOK_SEQUENCE_NORMAL);
 	}
 
 	/**
@@ -139,6 +140,7 @@ class coloftechThemePlugin extends ThemePlugin {
 		$sql = sprintf("SELECT us.user_id,us.username,us.first_name,us.last_name,uug.user_group_id,ugg.context_id,ugg.role_id,ugs.setting_value FROM users AS us LEFT JOIN user_user_groups AS uug ON uug.user_id = us.user_id LEFT JOIN user_groups AS ugg ON ugg.user_group_id = uug.user_group_id LEFT JOIN user_group_settings AS ugs ON ugs.user_group_id = ugg.user_group_id WHERE ugs.setting_name = 'name'");
 	}
 
+
 	function getEditors($hookName, $args){
 
 
@@ -152,7 +154,7 @@ class coloftechThemePlugin extends ThemePlugin {
 		$smarty = $args[0];
 		$template = $args[1];
 
-	$sql = sprintf("SELECT us.user_id,us.username,us.first_name,us.last_name,uug.user_group_id,ugg.context_id,ugg.role_id,ugs.setting_value FROM users AS us LEFT JOIN user_user_groups AS uug ON uug.user_id = us.user_id LEFT JOIN user_groups AS ugg ON ugg.user_group_id = uug.user_group_id LEFT JOIN user_group_settings AS ugs ON ugs.user_group_id = ugg.user_group_id WHERE ugg.context_id = %d AND ugs.setting_name = 'name' AND uug.user_group_id = 3 and us.user_id <> 1 OR ugg.context_id = %d AND ugs.setting_name = 'name' AND uug.user_group_id = 5 and us.user_id <> 1 GROUP BY us.user_id",$journalId,$journalId);
+	$sql = sprintf("SELECT us.user_id,us.username,us.first_name,us.last_name,ugs.setting_value FROM users AS us LEFT JOIN user_user_groups AS uug ON uug.user_id = us.user_id LEFT JOIN user_groups AS ugg ON ugg.user_group_id = uug.user_group_id LEFT JOIN user_group_settings AS ugs ON ugs.user_group_id = ugg.user_group_id WHERE ugg.context_id = %d AND ugs.setting_name = 'name' AND ugg.user_group_id = 3 and us.user_id <> 1 OR ugg.context_id = %d AND ugs.setting_name = 'name' AND ugg.user_group_id = 5 and us.user_id <> 1 GROUP BY us.user_id",$journalId,$journalId);
 		
 		/* database connection parser*/
 		$config = parse_ini_file("config.inc.php");
@@ -178,23 +180,31 @@ class coloftechThemePlugin extends ThemePlugin {
     		}
     	$i = 0;$j=3;
     	$html = '';
+    	$count = count($editorialteam) - 1;
+
+
     	foreach ($editorialteam as $key) {
+    		
     		if ($j == 3) {
-    			$html .= '<div class="item ';
-	    		if ($i <= 0) {
-	    			$html .= ' active ';
-	    		}
-	    		$html .=' ">
-	                    <div class="row">';
+
+    			if ($i == 0) {
+    			$html .= "<div class='item active'><div class='row'>";
+    			}else{
+
+    			$html .= "<div class='item '><div class='row'>";
+    			}
     		}
-    		if ($j != 0) {
+    		if ($j > 0 ) {
+
     			$html .= '
-    			 <div class="col-sm-4">
+    			<div class="col-sm-4">
                             <div class="col-item">
                                 <div class="photo">
                                     <img src="../../plugins/themes/coloftech/images/um.png" class="img-responsive" alt="a" />
                                 </div>
+
                                 <div class="info">
+
                                     <div class="row">
                                         <div class="price col-md-12">
                                             <h5>
@@ -203,39 +213,41 @@ class coloftechThemePlugin extends ThemePlugin {
                                                 '.$key['setting_value'].'</h5>
                                         </div>
                                     </div>
+
                                     <div class="separator clear-left">
                                         
                                         <p class="btn-add">
                                             <i class="fa fa-list"></i><a href="https://github.com/coloftech/coloftechThemePlugin" class="hidden-sm">Details</a></p>
+
                                     </div>
                                     <div class="clearfix">
                                     </div>
+
+
                                 </div>
+
                             </div>
-                        </div>
-    			';
+                  </div>
+                  ';
+    		}
+
+
+    		if ($j == 1 || $i == $count) {
+    			$html .= "</div></div>";
+    		}
+
 
     		
 
     		$j--;
 
-    		}else{
+    		if ($j <=0) {
     			$j = 3;
     		}
-
-    			
-
-    		
-    		if ($j == 3) {
-    			$html .= '</div></div>';
-    		}
-    		
-
-
-
     		$i++;
     	}
 
+    	$html .= '';
 		$smarty->assign('editorialdata',$html);
 
 		$smarty->assign('editorialteam',$editorialteam);
@@ -251,6 +263,132 @@ class coloftechThemePlugin extends ThemePlugin {
 		
 
 	}
+
+
+	function getmanagerial($hookName, $args){
+
+
+		$journalId = 0;
+		$journalInfo =& Request::getJournal();
+		if($journalInfo != NULL){			
+		$journalId = (int)$journalInfo->getId();
+		}
+
+
+		$smarty = $args[0];
+		$template = $args[1];
+
+	$sql = sprintf("SELECT us.user_id,us.username,us.first_name,us.last_name,ugs.setting_value FROM users AS us LEFT JOIN user_user_groups AS uug ON uug.user_id = us.user_id LEFT JOIN user_groups AS ugg ON ugg.user_group_id = uug.user_group_id LEFT JOIN user_group_settings AS ugs ON ugs.user_group_id = ugg.user_group_id WHERE ugg.context_id = %d AND ugs.setting_name = 'name' AND ugg.user_group_id = 7 and us.user_id <> 1 OR ugg.context_id = %d AND ugs.setting_name = 'name' AND ugg.user_group_id = 11 and us.user_id <> 1  OR ugg.context_id = %d AND ugs.setting_name = 'name' AND ugg.user_group_id = 13 and us.user_id <> 1 GROUP BY us.user_id",$journalId,$journalId,$journalId);
+		
+		/* database connection parser*/
+		$config = parse_ini_file("config.inc.php");
+		$host = $config['host'];
+		$user = $config['username'];
+		$pass = $config['password'];
+		$db = $config['name'];
+
+		/* i create my own connection because i can't find how i can connect to the database*/
+		/* database connection parser*/
+
+		$conn = new Mysqli($host, $user, $pass, $db);		
+		$result = $conn->query($sql);
+		
+		if($result->num_rows > 0){
+
+		$smarty->assign('managementCount',$result->num_rows);
+
+
+		$managementteam = array();
+		while($row = $result->fetch_assoc()) {
+        	$managementteam[] = $row;
+    		}
+    	$i = 0;$j=4;
+    	$html = '';
+    	$count = count($managementteam) - 1;
+
+
+    	foreach ($managementteam as $key) {
+    		
+    		if ($j == 4) {
+
+    			if ($i == 0) {
+    			$html .= "<div class='item active'><div class='row'>";
+    			}else{
+
+    			$html .= "<div class='item '><div class='row'>";
+    			}
+    		}
+    		if ($j > 0 ) {
+
+    			$html .= '
+    			<div class="col-sm-3">
+                            <div class="col-item">
+                                <div class="photo">
+                                    <img src="../../plugins/themes/coloftech/images/um.png" class="img-responsive" alt="a" />
+                                </div>
+
+                                <div class="info">
+
+                                    <div class="row">
+                                        <div class="price col-md-12">
+                                            <h5>
+                                                '.$key['username'].'</h5>
+                                            <h5 class="price-text-color">
+                                                '.$key['setting_value'].'</h5>
+                                        </div>
+                                    </div>
+
+                                    <div class="separator clear-left">
+                                        
+                                        <p class="btn-add">
+                                            <i class="fa fa-list"></i><a href="https://github.com/coloftech/coloftechThemePlugin" class="hidden-sm">Details</a></p>
+
+                                    </div>
+                                    <div class="clearfix">
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                  </div>
+                  ';
+    		}
+
+
+    		if ($j == 1 || $i == $count) {
+    			$html .= "</div></div>";
+    		}
+
+
+    		
+
+    		$j--;
+
+    		if ($j <=0) {
+    			$j = 4;
+    		}
+    		$i++;
+    	}
+
+    	$html .= '';
+		$smarty->assign('managementdata',$html);
+
+		$smarty->assign('managementteam',$managementteam);
+
+		}else{
+
+		$smarty->assign('managementCount',0);
+		$smarty->assign('managementteam',$managementteam);
+		}
+
+		$conn->close();
+
+		
+
+	}
+
+
 	function getProfileImg($userId=0)
 	{
 		$sql = sprintf("SELECT us.user_id,uss.setting_value FROM users AS us LEFT JOIN user_settings AS uss ON uss.user_id = us.user_id WHERE uss.setting_name = 'profileImage'");
