@@ -1,4 +1,4 @@
-<div class="slider-show">
+<div class="slider">
 
          {if $editorialteam}
     <div class="row">
@@ -33,5 +33,5 @@
     </div> <!-- end of slider-->
 
          {/if}
-         
+
 </div>

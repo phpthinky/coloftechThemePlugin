@@ -1,4 +1,4 @@
-<div class="slider-show">
+<div class="slider">
 
  {if $managementteam}
     <div class="row">
