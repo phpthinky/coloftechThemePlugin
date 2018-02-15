@@ -220,7 +220,7 @@ class coloftechThemePlugin extends ThemePlugin {
                                     <div class="row">
                                         <div class="price col-md-12">
                                             <h5>
-                                                '.$key['username'].'</h5>
+                                                '.$key['first_name'].' '.$key['last_name'].'</h5>
                                             <h5 class="price-text-color">
                                                 '.$key['positionTitle'].'</h5>
                                         </div>
@@ -290,7 +290,7 @@ class coloftechThemePlugin extends ThemePlugin {
 		$smarty = $args[0];
 		$template = $args[1];
 
-	$sql = sprintf("SELECT us.user_id,us.username,us.first_name,us.last_name,ugs.setting_value as positionTitle FROM users AS us LEFT JOIN user_user_groups AS uug ON uug.user_id = us.user_id LEFT JOIN user_groups AS ugg ON ugg.user_group_id = uug.user_group_id LEFT JOIN user_group_settings AS ugs ON ugs.user_group_id = ugg.user_group_id WHERE ugg.context_id = %d AND ugs.setting_name = 'name' AND ugg.user_group_id = 7 and us.user_id <> 1 OR ugg.context_id = %d AND ugs.setting_name = 'name' AND ugg.user_group_id = 11 and us.user_id <> 1  OR ugg.context_id = %d AND ugs.setting_name = 'name' AND ugg.user_group_id = 13 and us.user_id <> 1 GROUP BY us.user_id",$journalId,$journalId,$journalId);
+	$sql = sprintf("SELECT us.user_id,us.username,us.first_name,us.last_name,ugs.setting_value as positionTitle FROM users AS us LEFT JOIN user_user_groups AS uug ON uug.user_id = us.user_id LEFT JOIN user_groups AS ugg ON ugg.user_group_id = uug.user_group_id LEFT JOIN user_group_settings AS ugs ON ugs.user_group_id = ugg.user_group_id WHERE ugg.context_id = %d AND ugs.setting_name = 'name' AND ugg.user_group_id = 2 and us.user_id <> 1 OR ugg.context_id = %d AND ugs.setting_name = 'name' AND ugg.user_group_id = 7 and us.user_id <> 1 OR ugg.context_id = %d AND ugs.setting_name = 'name' AND ugg.user_group_id = 11 and us.user_id <> 1  OR ugg.context_id = %d AND ugs.setting_name = 'name' AND ugg.user_group_id = 13 and us.user_id <> 1 GROUP BY us.user_id",$journalId,$journalId,$journalId,$journalId);
 		
 		/* database connection parser*/
 		$config = parse_ini_file("config.inc.php");
@@ -346,7 +346,7 @@ class coloftechThemePlugin extends ThemePlugin {
     		if ($j > 0 ) {
 
     			$html .= '
-    			<div class="col-sm-4">
+    			<div class="col-sm-3">
                             <div class="col-item">
                                 <div class="photo">
                                     <img  src="'.$profileImage.'" class="img-responsive" alt="a" />
@@ -357,7 +357,7 @@ class coloftechThemePlugin extends ThemePlugin {
                                     <div class="row">
                                         <div class="price col-md-12">
                                             <h5>
-                                                '.$key['username'].'</h5>
+                                                '.$key['first_name'].' '.$key['last_name'].'</h5>
                                             <h5 class="price-text-color">
                                                 '.$key['positionTitle'].'</h5>
                                         </div>
