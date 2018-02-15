@@ -98,8 +98,12 @@ class coloftechThemePlugin extends ThemePlugin {
 
 
 		HookRegistry::register('TemplateManager::display', array($this, 'getActivejournal'), HOOK_SEQUENCE_NORMAL);
+
 		HookRegistry::register('TemplateManager::display', array($this, 'getEditors'), HOOK_SEQUENCE_NORMAL);
+
 		HookRegistry::register('TemplateManager::display', array($this, 'getmanagerial'), HOOK_SEQUENCE_NORMAL);
+
+		HookRegistry::register('TemplateManager::display', array($this, 'getAuthors'), HOOK_SEQUENCE_NORMAL);
 	}
 
 	/**
@@ -405,6 +409,142 @@ class coloftechThemePlugin extends ThemePlugin {
 
 		$smarty->assign('managementCount',0);
 		$smarty->assign('managementteam',$managementteam);
+		}
+
+		$conn->close();
+
+		
+
+	}
+
+	function getAuthors($hookName, $args){
+
+
+		$journalId = 0;
+		$journalInfo =& Request::getJournal();
+		if($journalInfo != NULL){			
+		$journalId = (int)$journalInfo->getId();
+		}
+
+
+		$smarty = $args[0];
+		$template = $args[1];
+
+	$sql = sprintf("SELECT us.user_id,us.username,us.first_name,us.last_name,ugs.setting_value as positionTitle FROM users AS us LEFT JOIN user_user_groups AS uug ON uug.user_id = us.user_id LEFT JOIN user_groups AS ugg ON ugg.user_group_id = uug.user_group_id LEFT JOIN user_group_settings AS ugs ON ugs.user_group_id = ugg.user_group_id WHERE ugg.context_id = %d AND ugs.setting_name = 'name' AND ugg.user_group_id = 14 and us.user_id <> 1  GROUP BY us.user_id",$journalId);
+		
+		/* database connection parser*/
+		$config = parse_ini_file("config.inc.php");
+		$host = $config['host'];
+		$user = $config['username'];
+		$pass = $config['password'];
+		$db = $config['name'];
+
+		/* i create my own connection because i can't find how i can connect to the database*/
+		/* database connection parser*/
+
+		$conn = new Mysqli($host, $user, $pass, $db);		
+		$result = $conn->query($sql);
+		
+		if($result->num_rows > 0){
+
+		$smarty->assign('authorscount',$result->num_rows);
+
+
+		$authorslist = array();
+		while($row = $result->fetch_assoc()) {
+        	$authorslist[] = $row;
+    		}
+    	$i = 0;$j=4;
+    	$html = '';
+    	$count = count($authorslist) - 1;
+
+
+    	foreach ($authorslist as $key) {
+    		
+
+
+		
+
+		$request = DAORegistry::getDAO('UserSettingsDAO');
+    	if($request != NULL){			
+		$profile = $request->getSetting($key['user_id'],'profileImage');
+		}
+		$publicFileManager = new PublicFileManager();
+		$path = $publicFileManager->getSiteFilesPath();
+
+		$profileImage = $profile['uploadName'] ? '../../'.$path.'/'.$profile['uploadName'] : '../../plugins/themes/coloftech/images/um.png';
+		
+    		if ($j == 4) {
+
+    			if ($i == 0) {
+    			$html .= "<div class='item active'><div class='row'>";
+    			}else{
+
+    			$html .= "<div class='item '><div class='row'>";
+    			}
+    		}
+    		if ($j > 0 ) {
+
+    			$html .= '
+    			<div class="col-sm-3">
+                            <div class="col-item">
+                                <div class="photo">
+                                    <img  src="'.$profileImage.'" class="img-responsive" alt="a" />
+                                </div>
+
+                                <div class="info">
+
+                                    <div class="row">
+                                        <div class="price col-md-12">
+                                            <h5>
+                                                '.$key['first_name'].' '.$key['last_name'].'</h5>
+                                            <h5 class="price-text-color">
+                                                '.$key['positionTitle'].'</h5>
+                                        </div>
+                                    </div>
+
+                                    <div class="separator clear-left">
+                                        
+                                        <p class="btn-add">
+                                            <i class="fa fa-list"></i><a href="https://github.com/coloftech/coloftechThemePlugin" class="hidden-sm">Details</a></p>
+
+                                    </div>
+                                    <div class="clearfix">
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                  </div>
+                  ';
+    		}
+
+
+    		if ($j == 1 || $i == $count) {
+    			$html .= "</div></div>";
+    		}
+
+
+    		
+
+    		$j--;
+
+    		if ($j <=0) {
+    			$j = 4;
+    		}
+    		$i++;
+    	}
+
+    	$html .= '';
+		$smarty->assign('authorslistdata',$html);
+
+		$smarty->assign('authorslist',$authorslist);
+
+		}else{
+
+		$smarty->assign('authorscount',0);
+		$smarty->assign('authorslist',$authorslist);
 		}
 
 		$conn->close();
